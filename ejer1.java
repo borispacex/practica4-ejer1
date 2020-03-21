@@ -1,5 +1,5 @@
 import java.io.IOException;
-import java.net.ServerSocket;
+import java.net.Socket;
 
 public class ejer1 {
 	public static void main(String[] args) {
@@ -12,10 +12,13 @@ public class ejer1 {
 	
 	private static boolean puertoOcupado(int puerto) {
 	    try {
-	        new ServerSocket(puerto).close();
-	        return false;
-	    } catch (IOException e) {
+	        new Socket("localhost", puerto).close();
 	        return true;
+	    } catch (IOException e) {
+	        return false;
 	    }
 	}
 }
+
+// verificar puertos
+// netstat -an | grep 'tcp' | grep 'LISTEN'
